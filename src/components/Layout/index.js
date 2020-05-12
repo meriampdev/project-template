@@ -8,26 +8,35 @@ import { toTitle } from '../../utils/strings';
 import NavItemLink from '../NavItemLink';
 import ContentCard from './ContentCard'
 
+import Progress from '../../pages/Progress'
+import RoadMap from '../../pages/RoadMap'
+import Projects from '../../pages/Projects'
+
 const TO_PREFIX = '/app';
 
-const navItems = [{
-  label: 'Inbox',
-  to: TO_PREFIX,
-  exact: true,
-  icon: 'inbox',
-}, {
-  label: 'Starred',
-  to: `${TO_PREFIX}/starred`,
-  icon: 'star',
-}, {
-  label: 'Send mail',
-  to: `${TO_PREFIX}/send-mail`,
-  icon: 'send',
-}, {
-  label: 'Drafts',
-  to: `${TO_PREFIX}/drafts`,
-  icon: 'drafts',
-}];
+const navItems = [
+  {
+    label: 'Projects',
+    to: `${TO_PREFIX}/projects`,
+    exact: true,
+    icon: 'web',
+    component: <Projects />
+  },
+  {
+    label: 'Road Map',
+    to: `${TO_PREFIX}/road-map`,
+    exact: true,
+    icon: 'track_changes',
+    component: <RoadMap />
+  },
+  {
+    label: 'Progress',
+    to: `${TO_PREFIX}/progress`,
+    exact: true,
+    icon: 'pie_chart',
+    component: <Progress />
+  }
+]
 
 const styles = {
   content: { minHeight: 'auto' },
@@ -71,13 +80,16 @@ class RoutingExample extends PureComponent {
         contentStyle={styles.content}
         contentClassName="md-grid"
       >
+        <div className='page-content-container'>
         <Switch key={location.pathname}>
           {
             navItems.map((item) => {
-              return <Route key={`navItem-${item.to}`} exact path={item.to} component={() => <ContentCard title={item.label} />} />
+              return <Route key={`navItem-${item.to}`} exact path={item.to} 
+                component={() => item.component ? item.component : <ContentCard title={item.label} />} />
             })
           }
         </Switch>
+        </div>
       </NavigationDrawer>
     );
   }

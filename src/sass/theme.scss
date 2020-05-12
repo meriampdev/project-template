@@ -9,6 +9,9 @@ $md-primary-color: #86c232;
 $md-secondary-color: #00796b;
 // $md-dark-theme-text-color: #86c232;
 $md-font-family: 'Work Sans', sans-serif;
+$md-slider-warn-md: false;
+
+$text-color: #ebebeb;
 @include react-md-everything;
 
 $md-dark-theme-colors: (
