@@ -5,8 +5,10 @@ import Cell from 'react-md/lib/Grids/Cell'
 import Paper from 'react-md/lib/Papers/Paper'
 import Textfield from '../../components/FormFields/Textfield'
 import Button from 'react-md/lib/Buttons/Button'
+import { useHistory } from 'react-router-dom';
 
 export default function Login(props) {
+  const history = useHistory()
   const [ formData, setFormData ] = useState({ username: '', password: '' })
   const [ formErrors, setFormErrors ] = useState({})
   const [ submitAttempt, setAttempt ] = useState(0)
@@ -14,6 +16,10 @@ export default function Login(props) {
   useEffect(() => {
     if(submitAttempt) {
       // submit logic here.. 
+      let errors = Object.keys(formErrors).map((key) => formErrors[key])
+      if(!errors.includes(true)) {
+        history.push('/app')
+      }
     }
   }, [formErrors])
 
@@ -34,10 +40,10 @@ export default function Login(props) {
           <Grid>
             <Cell size={12}>
               <Textfield
-                defaultProps={{ id: "username", type: "text", label: "Username" }}
+                defaultProps={{ id: "username", type: "email", label: "Username" }}
                 fieldKey="username" leftIcon="alternate_email"
                 onInputError={onInputError} onInputChange={onInputChange} submitAttempt={submitAttempt}
-                validations={['required']}
+                validations={['required', 'email']}
               />
             </Cell>
             <Cell size={12}>

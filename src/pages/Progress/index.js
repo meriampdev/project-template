@@ -46,7 +46,7 @@ export default function Progress(props) {
         <Grid>
           <Cell size={4}><Button onClick={() => setVisibility(true)} flat primary swapTheming>Add Progress</Button></Cell>
           <Cell size={4}></Cell>
-          <Cell size={4}><Button onClick={() => window.open('https://hygeia-demo.herokuapp.com')} flat primary swapTheming>Go to App</Button></Cell>
+          <Cell size={4}><Button onClick={() => {}} flat primary swapTheming>Go to App</Button></Cell>
         </Grid>
       </Cell>
       <Cell size={12}>
